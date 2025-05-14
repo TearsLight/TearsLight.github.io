@@ -1,0 +1,27 @@
+.popup-text {
+    position: absolute;
+    pointer-events: none;
+    opacity: 1;
+    font-size: 18px;
+    color: #FF5733;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    animation: bubbleUp 1.5s ease-out forwards;
+    z-index: 9999;
+}
+
+@keyframes bubbleUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px) scale(1.2);
+    }
+}    
