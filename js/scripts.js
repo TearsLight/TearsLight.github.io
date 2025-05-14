@@ -4,6 +4,50 @@
  * Copyright (c) 2016 Julian Garnier
  */
 
+function createButtonLink(href = '#', text = '按钮', color = '#007bff', hoverColor = '#0056b3') {
+  const link = document.createElement('a');
+  link.href = href;
+  link.textContent = text;
+
+  // **先设置所有样式和事件**
+  link.style.cssText = `
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: ${color};
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+    /* 初始隐藏（可选） */
+    opacity: 0;
+    transform: translateY(20px); /* 初始位移，实现进场动画 */
+  `;
+
+  // 鼠标悬停样式
+  link.addEventListener('mouseover', () => {
+    link.style.backgroundColor = hoverColor;
+  });
+
+  link.addEventListener('mouseout', () => {
+    link.style.backgroundColor = color;
+  });
+
+  // **最后插入页面**
+  document.body.appendChild(link);
+
+  // **添加进场动画（可选）**
+  setTimeout(() => {
+    link.style.opacity = 1;
+    link.style.transform = 'translateY(0)';
+  }, 0); // 0ms 确保渲染后立即执行动画
+
+  return link;
+}
+ 
+
+
 window.onload = function() {
 
   var messagesEl = /** @type {HTMLElement} */(document.querySelector('.messages'));
@@ -31,10 +75,9 @@ window.onload = function() {
     '愿你漫步其中时❤️',
     '被美好与惊喜环绕😋',
     '享受这独一无二的浏览时光！😙',
-    
     getCurrentTime(),
     'Ciallo～(∠・ω<)⌒☆',
-    '<a href="../blog/index.html">访问博客</a>',
+    '<a href="/blog/index.html" class="botton-link">访问博客</a>',
   ]
 
   var getFontSize = function() {
@@ -90,6 +133,10 @@ window.onload = function() {
   }
 
   var sendMessage = function(message, position) {
+    if(message=== 'button') {
+      const button = createButtonLink(message.href, message.text);
+      message = button.outerHTML;
+    }
     var loadingDuration = (message.replace(/<(?:.|\n)*?>/gm, '').length * typingSpeed) + 500;
     var elements = createBubbleElements(message, position);
     messagesEl.appendChild(elements.bubble);
