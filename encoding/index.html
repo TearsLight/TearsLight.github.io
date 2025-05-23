@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编码解码工具</title>
+    <link rel="stylesheet" href="/encoding/css/style.css">
+</head>
+<body>
+    <h1>编码解码工具</h1>
+    
+    <div class="converter">
+        <div class="input-group">
+            <label for="input-text">输入文本:</label>
+            <textarea id="input-text" placeholder="请输入要编码/解码的文本..."></textarea>
+        </div>
+
+        <div class="button-group">
+            <button id="encode-base64">Base64 编码</button>
+            <button id="decode-base64">Base64 解码</button>
+            <button id="encode-url">URL 编码</button>
+            <button id="decode-url">URL 解码</button>
+            <button id="encode-uri">URI Component 编码</button>
+            <button id="decode-uri">URI Component 解码</button>
+            <button id="encode-html">HTML 实体编码</button>
+            <button id="decode-html">HTML 实体解码</button>
+            <button id="encode-json">JSON 编码</button>
+            <button id="decode-json">JSON 解码</button>
+        </div>
+        
+        <div class="result">
+            <label for="output-text">结果:</label>
+            <textarea id="output-text" readonly></textarea>
+            <div id="message" class="alert"></div>
+        </div>
+    </div>
+    <script src="/encoding/js/script.js"></script>
+</body>
+</html>
