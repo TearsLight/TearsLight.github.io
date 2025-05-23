@@ -35,7 +35,7 @@ window.onload = function() {
     '「瞻彼阙者，虚室生白，吉祥止止。」',
     getCurrentTime(),
     '<a href="/blog/index.html" class="botton-link">访问博客</a>，<a href="/encoding/index.html" class="botton-link">编码转换</a>，<a href="#" class="botton-link">CTF</a>',
-    '所有网站代码均在github开源，点击<a href="github.com/TearsLight/TearsLight.github.io" class="botton-link">网站源代码</a>以查看源代码。'，
+    '所有网站代码均在github开源，点击<a href="github.com/TearsLight/TearsLight.github.io" class="botton-link">网站源代码</a>以查看源代码。',
   ]
 
   var getFontSize = function() {
