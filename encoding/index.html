@@ -1,39 +1,77 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>编码解码工具</title>
-    <link rel="stylesheet" href="/encoding/css/style.css">
+    <title>Multi-Format Encoding/Decoding Platform</title>
+    <link rel="stylesheet" href="#styles">
 </head>
 <body>
-    <h1>编码解码工具</h1>
-    
-    <div class="converter">
-        <div class="input-group">
-            <label for="input-text">输入文本:</label>
-            <textarea id="input-text" placeholder="请输入要编码/解码的文本..."></textarea>
-        </div>
+    <div class="container">
+        <header>
+            <h1>编码解码工具</h1>
+            <p class="subtitle">Multi-Format Encoding & Decoding Platform</p>
+        </header>
 
-        <div class="button-group">
-            <button id="encode-base64">Base64 编码</button>
-            <button id="decode-base64">Base64 解码</button>
-            <button id="encode-url">URL 编码</button>
-            <button id="decode-url">URL 解码</button>
-            <button id="encode-uri">URI Component 编码</button>
-            <button id="decode-uri">URI Component 解码</button>
-            <button id="encode-html">HTML 实体编码</button>
-            <button id="decode-html">HTML 实体解码</button>
-            <button id="encode-json">JSON 编码</button>
-            <button id="decode-json">JSON 解码</button>
-        </div>
-        
-        <div class="result">
-            <label for="output-text">结果:</label>
-            <textarea id="output-text" readonly></textarea>
-            <div id="message" class="alert"></div>
-        </div>
+        <main>
+            <div class="input-section">
+                <textarea id="inputText" placeholder="输入文本来编码/解码"></textarea>
+            </div>
+
+            <div class="controls-section">
+                <div class="encoding-buttons">
+                    <!-- URL Encoding -->
+                    <button onclick="encodeText('url')" class="encode-btn">URL编码</button>
+                    <button onclick="decodeText('url')" class="decode-btn">URL全编码</button>
+                    <button onclick="encodeText('urlPartial')" class="encode-btn">URL解码</button>
+                    
+                    <!-- Base64 Encoding -->
+                    <button onclick="encodeText('base64')" class="encode-btn">Base64编码</button>
+                    <button onclick="encodeText('base64Safe')" class="encode-btn">URL Safe Base64编码</button>
+                    <button onclick="decodeText('base64')" class="decode-btn">Base64解码</button>
+                    
+                    <!-- Hex Encoding -->
+                    <button onclick="encodeText('hex')" class="encode-btn">Hex编码</button>
+                    <button onclick="decodeText('hex')" class="decode-btn">Hex解码</button>
+                    
+                    <!-- HTML Encoding -->
+                    <button onclick="encodeText('html10')" class="encode-btn">Html10编码</button>
+                    <button onclick="encodeText('htmlSpecial')" class="encode-btn">Htmlspecialchars编码</button>
+                    <button onclick="decodeText('html10')" class="decode-btn">Html10解码</button>
+                    <button onclick="decodeText('html16')" class="decode-btn">Html16编码</button>
+                    <button onclick="decodeText('html16Dec')" class="decode-btn">Html16解码</button>
+                </div>
+                
+                <div class="encoding-buttons">
+                    <!-- JavaScript Encoding -->
+                    <button onclick="encodeText('js8')" class="encode-btn">JS8编码</button>
+                    <button onclick="decodeText('js8')" class="decode-btn">JS8解码</button>
+                    <button onclick="encodeText('js16')" class="encode-btn">JS16编码</button>
+                    <button onclick="decodeText('js16')" class="decode-btn">JS16解码</button>
+                    
+                    <!-- Unicode Encoding -->
+                    <button onclick="encodeText('unicode')" class="encode-btn">Unicode编码</button>
+                    <button onclick="decodeText('unicode')" class="decode-btn">Unicode解码</button>
+                    
+                    <!-- Special Functions -->
+                    <button onclick="encodeText('stringCharCode')" class="encode-btn">StringCharCode</button>
+                    <button onclick="executeDirectly()" class="special-btn">直接执行</button>
+                    <button onclick="clearAll()" class="clear-btn">复制</button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <textarea id="outputText" placeholder="结果显示在这里" readonly></textarea>
+            </div>
+
+            <div class="additional-controls">
+                <button onclick="swapInputOutput()" class="utility-btn">交换输入输出</button>
+                <button onclick="copyToClipboard()" class="utility-btn">复制结果</button>
+                <button onclick="clearAll()" class="utility-btn">清空所有</button>
+            </div>
+        </main>
     </div>
+    <link rel="stylesheet" href="/encoding/css/style.css">
     <script src="/encoding/js/script.js"></script>
 </body>
 </html>
