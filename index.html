@@ -3,69 +3,67 @@
 <head>
     <title>Ciallo～(∠・ω<)⌒☆</title>
     <meta charset="utf-8">
+    <meta name="description" content="Ciallo～(∠・ω<)⌒☆">
+    <link rel="icon" href="res/favicon.jpg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
     <link rel="stylesheet" href="css/mouseEvent.css">
     <link rel="stylesheet" href="css/background.css">
     
 </head>
-
 <body>
-  
+    <div class="background">
+        <div class="background-image"></div>
+        <div class="background-overlay"></div>
+    </div>
+    <div class="page-counter" id="pageCounter"></div>
     <div class="scroll-container" id="scrollContainer">
-        <div class="page messages active" id="page1">
+    <div class="page messages" id="page1">
             <div class="messages">
                 <div class="main">
-                    <h1>来啦？老弟？</h1>
+                    <div id="motto-container" class="mt-6 max-w-2xl px-4 py-3 text-center">
+                        <i class="fa fa-quote-left text-gray-500 mr-2"></i>
+                        <span id="motto-text" class="text-gray-300 italic"></span>
+                        <i class="fa fa-quote-right text-gray-500 ml-2"></i>
+                        <div class="mt-1 text-xs text-gray-500" id="motto-author"></div>
+                    </div>
+                    <div class="scroll-hint">
+                        <div class="mouse-icon"> 
+                        <div class="mouse-wheel"></div>
+                    </div>
+                        <p>划一下</p>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div class="page messages active" id="page2">
+            <div class="messages">
+                <div class="main">
+                    <h1>泥嚎</h1>
                     <p>家境平焊</p>
-                    <a href="#" class="botton-link">Get Started</a>
-                </div>
-            </div>
-            <div class="scroll-hint">
-                <div class="mouse-icon">
-                    <div class="mouse-wheel"></div>
-                </div>
-                <p>划一下</p>
-            </div>
-        </div>
-        <div class="page messages" id="page2">
-            <div class="messages">
-                <div class="main">
-                    <h2>Second Page</h2>
-                    <a href="fancy.html" class="botton-link">主站</a>
-                    <p>这里才是真正的Home</p>
-                    <a href="fancy.html" class="botton-link">111</a>
+                    <a href="fancy.html" class="botton-link">主页</a>
                 </div>
             </div>
         </div>
         <div class="page messages" id="page3">
             <div class="messages">
                 <div class="main">
-                    <h2>待开发</h2>
-                    <p>待开发</p>
-                    <a href="#" class="botton-link">测试3</a>
+                    <h2>小工具</h2>
+                    <a href="encoding/index.html" class="botton-link">编码转换</a>
+                    <p>这有主要的工具</p>
                 </div>
             </div>
         </div>
-        <div class="page messages" id="page4">
-            <div class="messages">
-                <div class="main">
-                    <h2>待开发</h2>
-                    <p>一不小心CV多了</p>
-                    <a href="" class="botton-link">Back to Top</a>
-                </div>
-            </div>
-        </div>
+        
 
     </div>
     <div class="scroll-indicator" id="scrollIndicator">
         <div class="scroll-dot active" onclick="goToPage(0)"></div>
         <div class="scroll-dot" onclick="goToPage(1)"></div>
         <div class="scroll-dot" onclick="goToPage(2)"></div>
-        <div class="scroll-dot" onclick="goToPage(3)"></div>
     </div>
-    <div class="page-counter" id="pageCounter"></div>
     <script src="js/mouseEvent.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/motto.js"></script>
 </body>
 </html>

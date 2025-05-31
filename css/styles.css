@@ -1,3 +1,24 @@
+.typing-effect {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    /* 添加闪烁光标效果 */
+    position: relative;
+}
+
+.typing-effect::after {
+    content: "|";
+    position: absolute;
+    right: -2px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+
 .botton-link {
     display: inline-block;
     padding: 8px 20px;
@@ -109,8 +130,8 @@ body {
 /* Page counter */
 .page-counter {
     position: fixed;
-    bottom: 30px;
-    left: 50%;
+    bottom: 20px;
+    left: 95%;
     transform: translateX(-50%);
     color: white;
     font-size: 1.1em;

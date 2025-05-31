@@ -1,5 +1,18 @@
+//标题
+// 保存初始标题
+var originalTitle = document.title;
+// 窗口失去焦点时（切换到其他标签页）执行的函数
+window.onblur = function () {
+    document.title = "网页炸了，回来看看叭～";
+};
+// 窗口获得焦点时（切回该标签页）执行的函数
+window.onfocus = function () {
+    document.title = originalTitle;
+};
+
+// 滚动页面脚本
 let currentPage = 0;
-let totalPages = 4;
+let totalPages = 3;
 let isScrolling = false;
 
 const pages = document.querySelectorAll('.page');
@@ -79,9 +92,9 @@ function updatePage() {
     });
 
     
-    pageCounter.textContent = `Page ${currentPage + 1} of ${totalPages}`;
+    pageCounter.textContent = `第${currentPage + 1}页 `;
 
-    
+    // Load messages for the current page   
     const currentMessages = pages[currentPage].querySelector('.messages');
     if (currentMessages) {
         currentMessages.classList.add('loading');

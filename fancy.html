@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciallo～(∠・ω<)⌒☆</title>
+    <link rel="icon" href="res/favicon.jpg" type="image/x-icon">
     <script src="css/3.4.16.js"></script> 
     <script>
         tailwind.config = {
@@ -56,6 +57,7 @@
     </style>
 </head>
 <body class="font-inter text-gray-100 min-h-screen">
+    
     <!-- 导航栏 -->
     <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center glass-effect">
@@ -114,7 +116,7 @@
                         <img src="res/pic_1.png" alt="pic_1" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                     </div>
                     <div class="p-6">
-                        <a href="#" class="text-xl font-bold mb-2">网络安全</a>
+                        <a href="NetSecurityBlog/" class="text-xl font-bold mb-2">网络安全</a>
                         <p class="text-gray-300 mb-4">这里没啥好看的</p>
                         <div class="flex justify-between items-center">
                             <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm">从雨老婆镇楼</span>
@@ -288,7 +290,7 @@
         </div>
     </footer>
 
-    <script src="js/power.js"></script>
+    <script src="js/motto.js"></script>
     <script>
         // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
@@ -313,6 +315,34 @@
                 });
             });
         });
+        const launchDate = new Date(2025,5,31,17,0,0); // 设置网站上线日期
+
+        function updateWebsiteAge() {
+            const now = new Date();
+            const diffMs = now - launchDate;
+            
+            // 计算年、月、日、时、分、秒
+            const years = Math.floor(diffMs / 31536000000);
+            const months = Math.floor((diffMs % 31536000000) / 2592000000);
+            const days = Math.floor((diffMs % 2592000000) / 86400000);
+            const hours = Math.floor((diffMs % 86400000) / 3600000);
+            const minutes = Math.floor((diffMs % 3600000) / 60000);
+            const seconds = Math.floor((diffMs % 60000) / 1000);
+            
+            // 格式化显示
+            let ageString = "网站已运行：";
+            if (years > 0) ageString += `${years}年`;
+            if (months > 0) ageString += `${months}月`;
+            if (days > 0) ageString += `${days}天`;
+            ageString += `${hours}时${minutes}分${seconds}秒`;
+            
+            document.getElementById('website-age').textContent = ageString;
+        }
+
+        // 初始化显示
+        updateWebsiteAge();
+        // 每秒更新一次
+        setInterval(updateWebsiteAge, 1000);
     </script>
 </body>
 </html>

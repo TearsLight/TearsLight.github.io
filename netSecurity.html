@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Ciallo～(∠・ω<)⌒☆</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+    <link rel="stylesheet" href="css/mouseEvent.css">
+    <link rel="stylesheet" href="css/background.css">
+    
+</head>
+
+<body>
+  
+    <div class="scroll-container" id="scrollContainer">
+        <div class="page messages active" id="page1">
+            <div class="messages">
+                <div class="main">
+                    <h1>CTF比赛及其工具</h1>
+                    <a href="encoding/index.html" class="botton-link">编码转换</a>
+                    <p>CTF比赛中常用的编码转换工具</p>
+                    <a href="netSecurity.html" class="botton-link">网络安全</a>
+                    <p>网络安全相关的工具和资源</p>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <div class="mouse-icon">
+                    <div class="mouse-wheel"></div>
+                </div>
+                <p>划一下</p>
+            </div>
+        </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-dot active" onclick="goToPage(0)"></div>
+        <div class="scroll-dot" onclick="goToPage(1)"></div>
+        <div class="scroll-dot" onclick="goToPage(2)"></div>
+        <div class="scroll-dot" onclick="goToPage(3)"></div>
+    </div>
+    <div class="page-counter" id="pageCounter"></div>
+    <script src="js/mouseEvent.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
