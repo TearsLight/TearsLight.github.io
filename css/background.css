@@ -1,22 +1,17 @@
 body {
-    background-image: url('/src/image.png');
-    background-repeat: no-repeat;
-    /* 初始时背景图片覆盖整个容器 */
-    background-size: cover; 
-    /* 背景图片居中显示 */
-    background-position: center; 
-    margin: 0;
-    min-height: 100vh;
+    position: relative;
 }
-@media (min-width: 768px) {
-    body {
-        /* 当屏幕宽度大于等于 768px 时，局部放大背景图片 */
-        background-size: 120%;
-    }
-}
-@media (min-width: 1024px) {
-    body {
-        /* 当屏幕宽度大于等于 1024px 时，进一步局部放大背景图片 */
-        background-size: 150%;
-    }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/res/bg.png");
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* 放在内容后面 */
+    opacity: 1; 
 }

@@ -1,37 +1,71 @@
 <!doctype html>
-<title>Ciallo～(∠・ω<)⌒☆</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
-<link rel="stylesheet" href="/css/mouseEvent.css">
-<link rel="stylesheet" href="/css/background.css">
+<html lang="en">
 <head>
-  <style>
-    .botton-link{
-    display: inline-block;
-    padding: 8px 20px;
-    background-color: darkgrey;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    }
-    .button-link:hover{
-    background-color: black;
-    }
-  </style>
+    <title>Ciallo～(∠・ω<)⌒☆</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />
+    <link rel="stylesheet" href="css/mouseEvent.css">
+    <link rel="stylesheet" href="css/background.css">
+    
 </head>
-<script src="/js/mouseEvent.js"></script>
+
 <body>
-  <div class="messages"></div>
-  <script src="js/anime.js"></script>
-  <script src="js/scripts.js"></script>
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-37236197-1', 'auto');
-    ga('send', 'pageview');
-  </script>
+  
+    <div class="scroll-container" id="scrollContainer">
+        <div class="page messages active" id="page1">
+            <div class="messages">
+                <div class="main">
+                    <h1>来啦？老弟？</h1>
+                    <p>家境平焊</p>
+                    <a href="#" class="botton-link">Get Started</a>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <div class="mouse-icon">
+                    <div class="mouse-wheel"></div>
+                </div>
+                <p>划一下</p>
+            </div>
+        </div>
+        <div class="page messages" id="page2">
+            <div class="messages">
+                <div class="main">
+                    <h2>Second Page</h2>
+                    <a href="fancy.html" class="botton-link">主站</a>
+                    <p>这里才是真正的Home</p>
+                    <a href="fancy.html" class="botton-link">111</a>
+                </div>
+            </div>
+        </div>
+        <div class="page messages" id="page3">
+            <div class="messages">
+                <div class="main">
+                    <h2>待开发</h2>
+                    <p>待开发</p>
+                    <a href="#" class="botton-link">测试3</a>
+                </div>
+            </div>
+        </div>
+        <div class="page messages" id="page4">
+            <div class="messages">
+                <div class="main">
+                    <h2>待开发</h2>
+                    <p>一不小心CV多了</p>
+                    <a href="" class="botton-link">Back to Top</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="scroll-indicator" id="scrollIndicator">
+        <div class="scroll-dot active" onclick="goToPage(0)"></div>
+        <div class="scroll-dot" onclick="goToPage(1)"></div>
+        <div class="scroll-dot" onclick="goToPage(2)"></div>
+        <div class="scroll-dot" onclick="goToPage(3)"></div>
+    </div>
+    <div class="page-counter" id="pageCounter"></div>
+    <script src="js/mouseEvent.js"></script>
+    <script src="js/script.js"></script>
 </body>
+</html>

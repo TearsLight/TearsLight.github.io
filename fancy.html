@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciallo～(∠・ω<)⌒☆</title>
+    <script src="css/3.4.16.js"></script> 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366F1', // 主色调：靛蓝色
+                        secondary: '#EC4899', // 辅助色：粉色
+                        accent: '#10B981', // 强调色：绿色
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .gradient-bg {
+                background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 25%, #EC4899 75%, #F472B6 100%);
+            }
+            .gradient-bg-animated {
+                background: linear-gradient(-45deg, #6366F1, #8B5CF6, #EC4899, #F472B6);
+                background-size: 400% 400%;
+                animation: gradient 15s ease infinite;
+            }
+            .glass-effect {
+                backdrop-filter: blur(12px);
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.18);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="font-inter text-gray-100 min-h-screen">
+    <!-- 导航栏 -->
+    <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center glass-effect">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+                    CherryLanterns
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#" class="hover:text-pink-300 transition-colors duration-300">首页</a>
+                <a href="#" class="hover:text-pink-300 transition-colors duration-300">工具</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300">不要点</button>
+                <button class="hidden md:block px-6 py-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:opacity-90 transition-all duration-300">不要点</button>
+                <button class="md:hidden text-2xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main class="gradient-bg-animated min-h-screen pt-20">
+        <!-- 英雄区域 -->
+        <section class="container mx-auto px-4 py-20 md:py-32">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight mb-6">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">大黑市</span>
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 text-gray-200 max-w-3xl mx-auto">
+                    我是秦始皇
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button class="px-8 py-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 hover:opacity-90 transition-all duration-300 shadow-lg shadow-purple-500/30">
+                        工具
+                    </button>
+                    <button class="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300">
+                        关于
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 网站缩略图展示区 -->
+        <section class="container mx-auto px-4 py-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">成果展示</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">没有灵感</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 网站缩略图卡片 1 -->
+                <div class="card-hover rounded-2xl overflow-hidden shadow-xl bg-white/5 backdrop-blur-md">
+                    <div class="aspect-[16/9] overflow-hidden">
+                        <img src="res/pic_1.png" alt="pic_1" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <a href="#" class="text-xl font-bold mb-2">网络安全</a>
+                        <p class="text-gray-300 mb-4">这里没啥好看的</p>
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-sm">从雨老婆镇楼</span>
+                            <button  class="text-pink-400 hover:text-pink-300 transition-colors">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 网站缩略图卡片 2 -->
+                <div class="card-hover rounded-2xl overflow-hidden shadow-xl bg-white/5 backdrop-blur-md">
+                    <div class="aspect-[16/9] overflow-hidden">
+                        <img src="res/pic_2.png" alt="pic_2" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">编曲理论</h3>
+                        <p class="text-gray-300 mb-4">说实话不如原神</p>
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-sm">战利品展示</span>
+                            <button class="text-pink-400 hover:text-pink-300 transition-colors">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 网站缩略图卡片 3 -->
+                <div class="card-hover rounded-2xl overflow-hidden shadow-xl bg-white/5 backdrop-blur-md">
+                    <div class="aspect-[16/9] overflow-hidden">
+                        <img src="res/pic_3.jpg" alt="pic_3" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">CT阵营胜利</h3>
+                        <p class="text-gray-300 mb-4">咱们是直接强攻，还是搞点小计谋啊？</p>
+                        <div class="flex justify-between items-center">
+                            <span class="px-3 py-1 rounded-full bg-green-500/20 text-green-300 text-sm">看啥呢你，A小有人上了</span>
+                            <button class="text-pink-400 hover:text-pink-300 transition-colors">
+                                <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div class="text-center mt-12">
+               还能再写点
+            </div> -->
+        </section>
+
+        <!-- 特点介绍区 -->
+        <section class="container mx-auto px-4 py-20">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">为什么我是秦始皇</h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">嘴长我身上了，我说是就是</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 特点卡片 1 -->
+                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mb-6">
+                        <i class="fa fa-paint-brush text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">这是朕的江山</h3>
+                    <p class="text-gray-300">大清亡辣</p>
+                </div>
+
+                <!-- 特点卡片 2 -->
+                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6">
+                        <i class="fa fa-mobile text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">这是啥</h3>
+                    <p class="text-gray-300">依托粑粑</p>
+                </div>
+
+                <!-- 特点卡片 3 -->
+                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
+                    <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
+                        <i class="fa fa-lightbulb-o text-2xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">可是我忘了</h3>
+                    <p class="text-gray-300">不痛了，现在放开双手是对的</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 行动号召区 -->
+        <section class="container mx-auto px-4 py-20">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl p-10 md:p-16 shadow-2xl">
+                <div class="max-w-3xl mx-auto text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">准备好出发了吗</h2>
+                    <p class="text-xl mb-10 text-white/90">GOGOGO出发喽</p>
+                    <div class="flex flex-col sm:flex-row justify-center gap-4">
+                        <button class="px-8 py-4 rounded-full bg-white text-purple-700 hover:bg-gray-100 transition-all duration-300 shadow-lg">
+                            立了
+                        </button>
+                        <button class="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 border border-white/30">
+                            不要点
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+                
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-900/80 backdrop-blur-md text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">CherryLanterns</h3>
+                    <p class="text-gray-400 mb-4">肘击你</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">显示1</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">测试1</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">显示2</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">测试2</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">显示3</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fa fa-map-marker mt-1 mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">地址</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">电话号码</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope mr-3 text-gray-400"></i>
+                            <span class="text-gray-400">邮件</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <p class="text-gray-500 text-sm">© 2025 CherryLanterns. 保留所有权利</p>
+                <p class="text-gray-400 text-sm mt-1">
+                    <span id="website-age"></span>
+                </p>
+            </div>
+             <div id="motto-container" class="mt-6 max-w-2xl px-4 py-3 text-center">
+                <i class="fa fa-quote-left text-gray-500 mr-2"></i>
+                <span id="motto-text" class="text-gray-300 italic"></span>
+                <i class="fa fa-quote-right text-gray-500 ml-2"></i>
+                <div class="mt-1 text-xs text-gray-500" id="motto-author"></div>
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-gray-500 hover:text-white text-sm transition-colors">隐私政策</a>
+            </div>
+        </div>
+        </div>
+    </footer>
+
+    <script src="js/power.js"></script>
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-gray-900/95', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-gray-900/95', 'shadow-lg');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
