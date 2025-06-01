@@ -1,3 +1,24 @@
+.element {
+    font-size: 48px;        /* 增大字体 */
+    font-weight: bold;      /* 加粗文字 */
+    color: #333;            /* 可选：调整文字颜色 */
+    line-height: 1.5;       /* 可选：调整行高 */
+}
+.fa-quote-left, .fa-quote-right {
+    color: #999;
+    margin: 0 10px;
+}
+.typed-cursor {
+    font-size: 24px;        /* 光标大小与文字一致 */
+    font-weight: bold;      /* 光标加粗 */
+    color: #333;            /* 光标颜色 */
+    animation: blink 0.7s infinite; /* 保留闪烁动画 */
+}
+  
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
 .typing-effect {
     display: inline-block;
     overflow: hidden;
