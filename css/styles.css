@@ -1,8 +1,8 @@
 .element {
-    font-size: 48px;        /* 增大字体 */
+    font-size: 32px;        /* 增大字体 */
     font-weight: bold;      /* 加粗文字 */
-    color: #333;            /* 可选：调整文字颜色 */
-    line-height: 1.5;       /* 可选：调整行高 */
+    color: #333;            /* 调整文字颜色 */
+    line-height: 1.5;       /* 调整行高 */
 }
 .fa-quote-left, .fa-quote-right {
     color: #999;

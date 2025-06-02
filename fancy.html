@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ciallo～(∠・ω<)⌒☆</title>
     <link rel="icon" href="res/favicon.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="css/mouseEvent.css">
     <script src="css/3.4.16.js"></script> 
     <script>
         tailwind.config = {
@@ -56,8 +57,8 @@
         }
     </style>
 </head>
-<body class="font-inter text-gray-100 min-h-screen">
-    
+    <script src="../js/mouseEvent.js"></script>
+    <body class="font-inter text-gray-100 min-h-screen">
     <!-- 导航栏 -->
     <header class="fixed w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center glass-effect">
@@ -156,42 +157,6 @@
                还能再写点
             </div> -->
         </section>
-
-        <section class="container mx-auto px-4 py-20">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">为什么要写这个</h2>
-                <p class="text-lg text-gray-300 max-w-2xl mx-auto">无聊写着玩</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- 特点卡片 1 -->
-                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
-                    <div class="w-16 h-16 rounded-full bg-purple-500/20 flex items-center justify-center mb-6">
-                        <i class="fa fa-paint-brush text-2xl text-purple-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">一</h3>
-                    <p class="text-gray-300">这可比写软件简单多了</p>
-                </div>
-
-                <!-- 特点卡片 2 -->
-                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
-                    <div class="w-16 h-16 rounded-full bg-blue-500/20 flex items-center justify-center mb-6">
-                        <i class="fa fa-mobile text-2xl text-blue-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">二</h3>
-                    <p class="text-gray-300">效果还比软件好</p>
-                </div>
-
-                <!-- 特点卡片 3 -->
-                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 card-hover">
-                    <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-6">
-                        <i class="fa fa-lightbulb-o text-2xl text-green-400"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">可是我忘了</h3>
-                    <p class="text-gray-300">不痛了，现在放开双手是对的</p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- 页脚 -->
@@ -201,6 +166,7 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4">CherryLanterns</h3>
                     <p class="text-gray-400 mb-4">肘击你</p>
+                    <a href="PrivacyPolicy.html" class="text-gray-500 hover:text-white text-sm transition-colors">隐私政策</a>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-facebook"></i></a>
                         <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-twitter"></i></a>
@@ -209,31 +175,24 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4">显示1</h3>
+                    <h3 class="text-lg font-bold mb-4">网络安全类</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">测试1</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">CTF赛事专区</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4">显示2</h3>
+                    <h3 class="text-lg font-bold mb-4">音乐编曲类</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">测试2</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">音乐理论</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-lg font-bold mb-4">显示3</h3>
+                    <h3 class="text-lg font-bold mb-4">联系我</h3>
                     <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <i class="fa fa-map-marker mt-1 mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">地址</span>
-                        </li>
                         <li class="flex items-center">
-                            <i class="fa fa-phone mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">电话号码</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa fa-envelope mr-3 text-gray-400"></i>
-                            <span class="text-gray-400">邮件</span>
+                            <i class="fa fa-envelope mr-3 text-gray-400">cherry@cherrylanterns.cn</i>
+                            <span class="text-gray-400"></span>
+                            
                         </li>
                     </ul>
                 </div>
@@ -253,7 +212,7 @@
                 <div class="mt-1 text-xs text-gray-500" id="motto-author"></div>
             </div>
             <div class="flex space-x-6">
-                <a href="PrivacyPolicy.html" class="text-gray-500 hover:text-white text-sm transition-colors">隐私政策</a>
+                
             </div>
         </div>
         </div>
@@ -276,7 +235,7 @@
         });
 
         // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        document.querySelectorAll('a[href="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
@@ -284,7 +243,7 @@
                 });
             });
         });
-        const launchDate = new Date(2025,5,31,17,0,0); // 设置网站上线日期
+        const launchDate = new Date(2025,5,1,0,0,0); // 2025 6 1 0 0 0 月份减一
 
         function updateWebsiteAge() {
             const now = new Date();
@@ -312,6 +271,20 @@
         updateWebsiteAge();
         // 每秒更新一次
         setInterval(updateWebsiteAge, 1000);
+
+        //标题
+        // 保存初始标题
+        var originalTitle = document.title;
+        // 窗口失去焦点时（切换到其他标签页）执行的函数
+        window.onblur = function () {
+            document.title = "网页炸了，回来看看叭～";
+        };
+        // 窗口获得焦点时（切回该标签页）执行的函数
+        window.onfocus = function () {
+            document.title = originalTitle;
+        };
+
     </script>
+    <script src="js/mouseEvent.js"></script>
 </body>
 </html>
