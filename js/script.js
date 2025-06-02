@@ -36,7 +36,7 @@ window.onfocus = function () {
 
 // 滚动页面脚本
 let currentPage = 0;
-let totalPages = 3;
+let totalPages = 2;
 let isScrolling = false;
 
 const pages = document.querySelectorAll('.page');
