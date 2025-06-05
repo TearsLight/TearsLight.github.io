@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caesar Cipher - Flag Submission</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="icon" href="/res/favicon.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="/css/mouseEvent.css">
+  
+  <!-- 配置Tailwind自定义样式 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#10B981',
+            accent: '#F59E0B',
+            dark: '#1F2937',
+            success: '#10B981',
+            danger: '#EF4444',
+          },
+          fontFamily: {
+            inter: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .hero-block {
+        @apply rounded-2xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl;
+      }
+      .input-focus {
+        @apply focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    }
+  </style>
+</head>
+<body class="font-inter bg-gray-50 min-h-screen p-4 md:p-8 flex flex-col items-center justify-center">
+  <div class="max-w-4xl w-full mx-auto">
+    <!-- 单个大型内容块 -->
+    <div class="hero-block bg-gradient-to-br from-primary to-purple-600 text-white mb-8">
+      <div class="p-8 md:p-12">
+        <div class="text-center mb-8">
+          <div class="w-20 h-20 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center mx-auto mb-6">
+            <i class="fa fa-star text-white text-3xl"></i>
+          </div>
+          <h1 class="text-[clamp(2rem,5vw,3rem)] font-bold mb-4">Easyxor</h1>
+          <p class="text-white/80 text-lg max-w-2xl mx-auto">
+           Susctf{}
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div class="flex items-center mb-4">
+              <h3 class="text-xl font-semibold"><a href="/CTF/SusCTF 2017/index.html" class="text-white hover:text-white/90 transition-colors">SusCTF</a> > 2017</h3>
+            </div>
+          </div>
+          
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6">
+            <div class="flex items-center mb-4">
+              <h3 class="text-xl font-semibold">其他</h3>
+            </div>
+            <a href="/CTF/SusCTF 2017/Easyxor/EasyXor.zip" class="text-white/80 hover:text-white transition-colors">下载附件</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Flag提交表单 -->
+    <div class="hero-block bg-white shadow-lg p-6 md:p-8">
+      <h2 class="text-2xl font-bold text-dark mb-6">提交Flag</h2>
+      
+      <form id="flagForm" class="space-y-4">
+        <div>
+          <label for="flag" class="block text-sm font-medium text-gray-700 mb-1">请输入Flag</label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <i class="fa fa-key text-gray-400"></i>
+            </div>
+            <input 
+              type="text" 
+              id="flag" 
+              name="flag" 
+              class="pl-10 block w-full rounded-lg border-gray-300 shadow-sm py-3 px-4 border focus:ring-2 focus:ring-primary/50 focus:border-primary focus:outline-none transition-all"
+              placeholder="输入Flag..."
+              required
+            >
+          </div>
+        </div>
+        
+        <button 
+          type="submit" 
+          class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-4 rounded-lg shadow transition-all duration-300 flex items-center justify-center"
+        >
+          <i class="fa fa-paper-plane mr-2"></i> 提交
+        </button>
+      </form>
+      
+      <!-- 结果提示框 -->
+      <div id="resultMessage" class="mt-4 hidden animate-fade-in">
+        <div class="p-4 rounded-lg" id="messageContent">
+          <!-- 内容将通过JavaScript动态插入 -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 滚动时的动画效果
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroBlocks = document.querySelectorAll('.hero-block');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('opacity-100', 'translate-y-0');
+            entry.target.classList.remove('opacity-0', 'translate-y-8');
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      heroBlocks.forEach(block => {
+        block.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-8');
+        observer.observe(block);
+      });
+      
+      // Flag表单处理
+      const flagForm = document.getElementById('flagForm');
+      const resultMessage = document.getElementById('resultMessage');
+      const messageContent = document.getElementById('messageContent');
+      
+      flagForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const flagInput = document.getElementById('flag');
+        const userFlag = flagInput.value.trim();
+        
+        // 验证Flag，暂时为前端检验，如果你看到这里，请不要尝试修改代码来获取Flag，毕竟这只是投机取巧。
+        const correctFlag = "Susctf{I_n3ed_hea1ing}";
+        
+        // 显示结果
+        resultMessage.classList.remove('hidden');
+        
+        if (userFlag === correctFlag) {
+          // 正确Flag
+          messageContent.innerHTML = `
+            <div class="bg-success/10 border-l-4 border-success p-4 flex">
+              <div class="flex-shrink-0">
+                <i class="fa fa-check-circle text-success text-xl"></i>
+              </div>
+              <div class="ml-3">
+                <p class="text-success font-medium">答案正确！</p>
+                <p class="text-success/80 text-sm">恭喜你，成功破解了Caesar cipher！</p>
+              </div>
+            </div>
+          `;
+          
+          // 成功后禁用表单
+          flagInput.disabled = true;
+          flagForm.querySelector('button').disabled = true;
+          flagForm.querySelector('button').classList.add('bg-gray-400');
+          flagForm.querySelector('button').classList.remove('bg-primary', 'hover:bg-primary/90');
+        } else {
+          // 错误Flag
+          messageContent.innerHTML = `
+            <div class="bg-danger/10 border-l-4 border-danger p-4 flex">
+              <div class="flex-shrink-0">
+                <i class="fa fa-times-circle text-danger text-xl"></i>
+              </div>
+              <div class="ml-3">
+                <p class="text-danger font-medium">答案错误</p>
+                <p class="text-danger/80 text-sm">请检查你的输入，再试一次。</p>
+              </div>
+            </div>
+          `;
+          
+          // 错误抖动动画
+          flagInput.classList.add('animate-shake');
+          setTimeout(() => {
+            flagInput.classList.remove('animate-shake');
+          }, 500);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
