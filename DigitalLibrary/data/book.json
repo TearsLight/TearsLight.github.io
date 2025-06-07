@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "title": "test",
+        "author": "neko娘",
+        "category": "none",
+        "icon": "📜",
+        "filePath": "/DigitalLibrary/Books/test.txt",
+        "chapterRegex": "^第[一二三四五六七八九十]+章\\s+.+$"
+    },
+    {
+        "id": 2,
+        "title": "道德经",
+        "author": "老子",
+        "category": "philosophy",
+        "icon": "📖",
+        "filePath": "/DigitalLibrary/Books/道德经.txt",
+        "chapterRegex": "^第[一二三四五六七八九十]+篇\\s+.+$"
+    },
+    {
+        "id": 3,
+        "title": "庄子",
+        "author": "庄周",
+        "category": "philosophy",
+        "icon": "📚",
+        "filePath": "/DigitalLibrary/Books/庄子.txt",
+        "chapterRegex": "^(内篇|外篇|杂篇)\\s+.+第[一二三四五六七八九十]+$"
+    }
+]

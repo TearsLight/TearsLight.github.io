@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="一个现代化的数字图书馆，提供丰富的图书资源和友好的阅读体验。">
+    <meta name="keywords" content="数字图书馆, 在线阅读, 图书分类, 电子书, 阅读器">
+    <link rel="icon" href="/res/favicon.jpg" type="image/x-icon">
+    <title>数字图书馆 | CherryLanterns</title>
+    <link rel="stylesheet" href="/DigitalLibrary/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <div class="sidebar">
+            <div class="logo">📚 数字图书馆</div>
+            <div class="category-title">图书分类</div>
+            <ul class="category-list">
+                <li class="category-item" onclick="filterBooks('all')">📖 全部图书</li>
+                <li class="category-item" onclick="filterBooks('fiction')">🎭 小说文学</li>
+                <li class="category-item" onclick="filterBooks('tech')">💻 科技编程</li>
+                <li class="category-item" onclick="filterBooks('history')">🏛️ 历史人文</li>
+                <li class="category-item" onclick="filterBooks('science')">🔬 科学自然</li>
+                <li class="category-item" onclick="filterBooks('art')">🎨 艺术设计</li>
+                <li class="category-item" onclick="filterBooks('business')">💼 商业经济</li>
+            </ul>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="main-content">
+            <!-- 顶部搜索栏 -->
+            <div class="header">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="搜索图书、作者..." id="searchInput">
+                    <button class="search-btn" onclick="searchBooks()">搜索</button>
+                </div>
+                <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            </div>
+
+            <!-- 推荐图书 -->
+            <div class="recommendations">
+                <h2 class="section-title">📚 推荐阅读</h2>
+                <div class="book-grid" id="bookGrid">
+                    <!-- 图书卡片将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阅读器模态框 -->
+    <div class="reader-modal" id="readerModal">
+        <div class="reader-container">
+            <div class="reader-header">
+                <div class="reader-title" id="readerTitle">正在阅读...</div>
+                <div class="reader-controls">
+                    <button class="reader-btn" onclick="toggleReaderTheme()">🌙</button>
+                    <button class="reader-btn" onclick="changePageMode()">📖</button>
+                    <button class="reader-btn" onclick="closeReader()">✕</button>
+                </div>
+            </div>
+            <div class="reader-content" id="readerContent">
+                <div class="page-content" id="pageContent">
+                    <!-- 页面内容 -->
+                </div>
+                <button class="page-nav prev-page" onclick="prevPage()">‹</button>
+                <button class="page-nav next-page" onclick="nextPage()">›</button>
+                <div class="page-indicator" id="pageIndicator">第 1 页</div>
+            </div>
+        </div>
+    </div>
+    <script src="/DigitalLibrary/js/library.js"></script>
+</body>
+</html>
