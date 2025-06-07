@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SusCTF 2017 WriteUP | NetSecurityBlog</title><meta name="author" content="cherrylanterns"><meta name="copyright" content="cherrylanterns"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="SusCTF 2017Caesar cipher 【类型：Reverse Engineer、Crypto】  题目给出题目压缩文件下载并解压之后，得到一个crypto1.txt文件，内容如下：Fhfpgs&#123;3r811r068s5pr27ro4op1p37723q7rr2&#125;结合题目可知是凯撒密码，根据提示内容Susctf{}可知flag类型，由F到S的偏移量为13，将整体偏移13">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SusCTF 2017 WriteUP">
+<meta property="og:url" content="http://cherrylanterns.com/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/index.html">
+<meta property="og:site_name" content="NetSecurityBlog">
+<meta property="og:description" content="SusCTF 2017Caesar cipher 【类型：Reverse Engineer、Crypto】  题目给出题目压缩文件下载并解压之后，得到一个crypto1.txt文件，内容如下：Fhfpgs&#123;3r811r068s5pr27ro4op1p37723q7rr2&#125;结合题目可知是凯撒密码，根据提示内容Susctf{}可知flag类型，由F到S的偏移量为13，将整体偏移13">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://cherrylanterns.com/res/favicon.jpg">
+<meta property="article:published_time" content="2025-06-05T12:47:15.000Z">
+<meta property="article:modified_time" content="2025-06-05T13:09:27.358Z">
+<meta property="article:author" content="cherrylanterns">
+<meta property="article:tag" content="SusCTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://cherrylanterns.com/res/favicon.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SusCTF 2017 WriteUP",
+  "url": "http://cherrylanterns.com/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/",
+  "image": "http://cherrylanterns.com/res/favicon.jpg",
+  "datePublished": "2025-06-05T12:47:15.000Z",
+  "dateModified": "2025-06-05T13:09:27.358Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "cherrylanterns",
+      "url": "http://cherrylanterns.com/NetSecurityBlog/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/NetSecurityBlog/../res/favicon.jpg"><link rel="canonical" href="http://cherrylanterns.com/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/NetSecurityBlog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/NetSecurityBlog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: 'Copy Successful',
+    error: 'Copy Failed',
+    noSupport: 'Browser Not Supported'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just now',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: 'Load More'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SusCTF 2017 WriteUP',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background-image: url(../res/pic_1.png);"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(../res/pic_1.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/NetSecurityBlog/"><img class="site-icon" src="/NetSecurityBlog/../res/favicon.jpg" alt="Logo"><span class="site-name">NetSecurityBlog</span></a><a class="nav-page-title" href="/NetSecurityBlog/"><span class="site-name">SusCTF 2017 WriteUP</span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">SusCTF 2017 WriteUP</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2025-06-05T12:47:15.000Z" title="Created 2025-06-05 20:47:15">2025-06-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2025-06-05T13:09:27.358Z" title="Updated 2025-06-05 21:09:27">2025-06-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post Views:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="SusCTF-2017"><a href="#SusCTF-2017" class="headerlink" title="SusCTF 2017"></a>SusCTF 2017</h1><h2 id="Caesar-cipher"><a href="#Caesar-cipher" class="headerlink" title="Caesar cipher"></a>Caesar cipher</h2><ul>
+<li>【类型：Reverse Engineer、Crypto】</li>
+</ul>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://cherrylanterns.cn/CTF/SusCTF%202017/Caesar%20cipher/">题目</a></h3><p>给出题目压缩文件下载并解压之后，得到一个crypto1.txt文件，内容如下：<br><code>Fhfpgs&#123;3r811r068s5pr27ro4op1p37723q7rr2&#125;</code><br>结合题目可知是凯撒密码，<br>根据提示内容Susctf{}可知flag类型，<br>由F到S的偏移量为13，将整体偏移13可得：<br><code>Susctf&#123;3e811e068f5ce27eb4bc1c37723d7ee2&#125;</code></p>
+<hr>
+<h2 id="EasyXor"><a href="#EasyXor" class="headerlink" title="EasyXor"></a>EasyXor</h2><ul>
+<li>【类型：Reverse Engineer、Crypto】</li>
+</ul>
+<h3 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://cherrylanterns.cn/CTF/SusCTF%202017/Easyxor/">题目</a></h3><p>将下载的文件用十六进制打开发现开头<code>7f 45 4c 46</code>，是elf文件。<br>修改后缀为elf拖到ida，检查main包含 22 个整数的数组v8，这些整数其实是 ASCII 码值，F5检查伪代码。<br>伪代码里面，验证条件为 <code>v8[i] == (i ^ s[i])</code>，推测是异或加密，因此可通过 <code>s[i] = i ^ v8[i]</code> 直接计算出原始字符串 s。<br>Python代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [83,116,113,96,112,99,125,78,87,103,57,110,104,82,102,106,113,32,123,125,115,104] </span><br><span class="line">c = []; </span><br><span class="line">for i in range(len(a)): </span><br><span class="line">    c += chr(a[i] ^ i) </span><br><span class="line">    for j in c:</span><br><span class="line">        pass</span><br><span class="line">    print(j,end=&#x27;&#x27;)</span><br></pre></td></tr></table></figure>
+<p>运行得出答案：<br><code>Susctf&#123;I_n3ed_hea1ing&#125;</code></p>
+<hr>
+<h2 id="EasyReverse"><a href="#EasyReverse" class="headerlink" title="EasyReverse"></a>EasyReverse</h2><ul>
+<li>【类型：Reverse】</li>
+</ul>
+<h3 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://cherrylanterns.cn/CTF/SusCTF%202017/EasyReverse/">题目</a></h3><p>ida打开直接出来</p>
+<p><code>Susctf&#123;W3lc0me_to_the_rever5e_w0rld!&#125;</code></p>
+<hr>
+<h2 id="Crack-Zip"><a href="#Crack-Zip" class="headerlink" title="Crack Zip"></a>Crack Zip</h2><ul>
+<li>【类型：Crypto】</li>
+</ul>
+<h3 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://cherrylanterns.cn/CTF/SusCTF%202017/CreakZIP/">题目</a></h3><p>8位纯数字暴力破解密码<code>20170925</code>，拿到flag.txt<br><code>Susctf&#123;ec1717de879b19792c77f5edacbb84dc&#125;</code></p>
+<hr>
+<h2 id="misc1"><a href="#misc1" class="headerlink" title="misc1"></a>misc1</h2><ul>
+<li>【类型：misc】</li>
+</ul>
+<h3 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a><a target="_blank" rel="noopener" href="https://cherrylanterns.cn/CTF/SusCTF%202017/misc1/">题目</a></h3><p>拖到010editor打开<br>搜索susctf，查询到flag：<br><code>SusCTF&#123;MetaData_1s_Important&#125;</code></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>Author: </span><span class="post-copyright-info"><a href="http://cherrylanterns.com/NetSecurityBlog">cherrylanterns</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>Link: </span><span class="post-copyright-info"><a href="http://cherrylanterns.com/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/">http://cherrylanterns.com/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>Copyright Notice: </span><span class="post-copyright-info">All articles on this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless otherwise stated.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/NetSecurityBlog/tags/SusCTF/">SusCTF</a></div><div class="post-share"><div class="social-share" data-image="/NetSecurityBlog/../res/favicon.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/NetSecurityBlog/../res/favicon.jpg" onerror="this.onerror=null;this.src='/NetSecurityBlog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">cherrylanterns</div><div class="author-info-description"></div><div class="site-data"><a href="/NetSecurityBlog/archives/"><div class="headline">Articles</div><div class="length-num">1</div></a><a href="/NetSecurityBlog/tags/"><div class="headline">Tags</div><div class="length-num">1</div></a><a href="/NetSecurityBlog/categories/"><div class="headline">Categories</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>Announcement</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Contents</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#SusCTF-2017"><span class="toc-number">1.</span> <span class="toc-text">SusCTF 2017</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Caesar-cipher"><span class="toc-number">1.1.</span> <span class="toc-text">Caesar cipher</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-number">1.1.1.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EasyXor"><span class="toc-number">1.2.</span> <span class="toc-text">EasyXor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE-1"><span class="toc-number">1.2.1.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EasyReverse"><span class="toc-number">1.3.</span> <span class="toc-text">EasyReverse</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE-2"><span class="toc-number">1.3.1.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Crack-Zip"><span class="toc-number">1.4.</span> <span class="toc-text">Crack Zip</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE-3"><span class="toc-number">1.4.1.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#misc1"><span class="toc-number">1.5.</span> <span class="toc-text">misc1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE-4"><span class="toc-number">1.5.1.</span> <span class="toc-text">题目</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Posts</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/NetSecurityBlog/2025/06/05/SusCTF%202017%20WriteUP/" title="SusCTF 2017 WriteUP">SusCTF 2017 WriteUP</a><time datetime="2025-06-05T12:47:15.000Z" title="Created 2025-06-05 20:47:15">2025-06-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By cherrylanterns</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.5</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Reading Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light and Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle Between Single-column and Double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="Settings"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back to Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/NetSecurityBlog/js/utils.js"></script><script src="/NetSecurityBlog/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
