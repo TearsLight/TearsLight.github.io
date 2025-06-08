@@ -24,6 +24,6 @@
         "category": "philosophy",
         "icon": "📚",
         "filePath": "/DigitalLibrary/Books/庄子.txt",
-        "chapterRegex": "^(内篇|外篇|杂篇)\\s+.+第[一二三四五六七八九十]+$"
+        "chapterRegex": "^庄子(内篇|外篇|杂篇)\\s+.+第[一二三四五六七八九十]+$"
     }
 ]
