@@ -12,8 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
             "人生天地之间，若白驹之过隙，忽然而已。",
             "天地有大美而不言，四时有明法而不议，万物有成理而不说。",
             "达生之情者，不务生之所无以为；达命之情者，不务知之所无奈何 。"
-
-
         ],
         typeSpeed: 190,
         backSpeed: 50,
