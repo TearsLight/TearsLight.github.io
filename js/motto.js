@@ -1,5 +1,5 @@
 function fetchHitokoto() {
-    return fetch('https://v1.hitokoto.cn/')
+    return fetch('https://v1.hitokoto.cn/?k')
         .then(response => {
             if (!response.ok) {
                 throw new Error('获取一言数据失败');
