@@ -110,7 +110,7 @@
     <!-- 底部信息 -->
     <footer class="bg-dark text-white py-4">
         <div class="container mx-auto px-4 text-center text-sm">
-            <p>©一个基于WebSocket的实时聊天应用</p>
+            <p>一个基于WebSocket的实时聊天应用(测试版)</p>
         </div>
     </footer>
 
@@ -130,7 +130,7 @@
 
         // 连接WebSocket服务器
         function connect() {
-            // 测试环境使用echo服务器：ws://echo.websocket.org
+            // 测试环境使用websocket echo服务器：wss://echo.websocket.org
             ws = new WebSocket('wss://echo.websocket.org');
 
             // 连接成功
