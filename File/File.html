@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件托管</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #1a202c;
+            color: #edf2f7;
+        }
+        a {
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="bg-gray-900 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">文件托管</h1>
+            <nav>
+                <a href="fancy.html" class="text-gray-400 hover:text-white mx-2">首页</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">关于</a>
+                <a href="#" class="text-gray-400 hover:text-white mx-2">联系</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow container mx-auto p-4">
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4">上传文件</h2>
+            <form action="#" method="POST" enctype="multipart/form-data" class="bg-gray-800 p-4 rounded-lg">
+                <input type="file" name="file" class="mb-4 w-full text-gray-300 bg-gray-700 border border-gray-600 rounded-lg p-2">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg">上传</button>
+            </form>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-bold mb-4">已上传文件</h2>
+            <div class="bg-gray-800 p-4 rounded-lg">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 border-b border-gray-600">文件名</th>
+                            <th class="py-2 px-4 border-b border-gray-600">大小</th>
+                            <th class="py-2 px-4 border-b border-gray-600">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 示例文件行 -->
+                        <tr>
+                            <td class="py-2 px-4 border-b border-gray-600">File/bj_1000.apk</td>
+                            <td class="py-2 px-4 border-b border-gray-600">29,747 KB</td>
+                            <td class="py-2 px-4 border-b border-gray-600">
+                                <a href="bj_1000.apk" class="text-blue-500 hover:underline">下载</a>
+                                <a href="#" class="text-red-500 hover:underline">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 p-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-400">© 2023 文件托管. 版权所有.</p>
+        </div>
+    </footer>
+</body>
+</html>
